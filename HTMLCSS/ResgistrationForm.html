@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>Registration Form</title> 
+       <style>
+           body{
+               background-color:  papayawhip;
+               color:rgb(155, 23, 67);
+               font-size: large;
+               font-weight: bold;
+               font-family: Cambria;
+           }
+           div{
+               background-color: papayawhip;
+               margin-top: 25px;
+               padding-left: 100px;
+               text-align: left;
+           }
+           fieldset{
+               border-color: rgb(104, 17, 46);
+               background-color:white;
+               margin-left: 30%;
+                margin-right: 30%; 
+               padding: 20px 70px 30px 70px;
+           }
+           select,input{
+               height:25px;
+           } 
+       </style>
+    </head>
+    <body>
+        <h1 style="font-size:35px;text-align: center;color:rgb(104, 17, 46)">   REGISTRATION FORM</h1>
+        <div>
+        <form action=RegistrationSuccess.html method="GET">
+            <fieldset>
+                <legend>Your Details</legend><br>
+                <label>Firstname :   </label>
+                <input type="text" name="fname" id="fname" required autofocus><br><br>
+                <label>Middlename : </label>
+                <input type="text" name="mname" id="mname"><br><br>
+                <label>Lastname :  </label>
+                <input type="text" name="lname" id="lname" required><br><br>
+                <label>Couse : </label> 
+                <select id="couse"  name="course" required>
+                    <option value="duplicate" selected disabled>select one</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BE">BE</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                    <option value="M.Tech">M.Tech</option>  
+                </select><br><br>
+                <label>Gender : </label> 
+                <input type="radio" id="male" name="gender" value="Male"><label> Male</label>
+                <input type="radio" id="female" name="gender" value="Female"><label> Female</label>
+                <input type="radio" id="other" name="gender" value="Other"><label> Other</label><br><br>
+                <label>Phone :</label>
+                <input type="text" name="countryCode" id="countryCode" value="+91" size="1">
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" size="10" ><br><br>
+                <label>Address :</label>
+                <textarea name="address" rows="7" cols="40"></textarea><br><br>
+                <label>e-mail :</label>
+                <input type="email" name="mail" id="mail"><br><br>
+                <label>Password :</label>
+                <input type="password" name="password" id="password"><br><br>
+                <label>Re-Type : </label>
+                <input type="password" name="confirmPswd" id="confirmPswd"><br><br>
+                <input style="background-color:rgb(197, 90, 125) ;border-radius: 10%;font-size:15px ;color: white;font-weight: bold;
+                font-family: Cambria; padding: 7px 14px;height:45px;text-align: center;margin-left: 32%;" type="submit" value="Submit">
+                
+            </fieldset>
+        </form></div>
+    </body>
+</html>
