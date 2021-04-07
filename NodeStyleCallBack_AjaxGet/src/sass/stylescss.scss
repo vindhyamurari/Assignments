@@ -1,0 +1,137 @@
+@mixin basicBtn {
+    font-family: Cambria;
+    background-color:lavenderblush; 
+    border: none;
+    color:black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 50px;
+    cursor: pointer;
+}
+
+$titleColor:lavenderblush;
+$textColor:rgb(85, 2, 85);
+
+#title{
+    background-color: white;
+    margin:2vw;
+    padding:0.5vw;
+    padding-top: 1vw;
+    h1{
+        margin-left: 4vw;
+    }
+    h1,button{
+        display: inline-block;
+    }
+    .mainbutton{
+       float: right;
+        /* padding-left:1vw;
+        padding-right:1vw;
+        margin-bottom: 2vw; */
+        @include basicBtn();
+        margin: 4px 25px;
+        margin-top: 2vw;
+        color: $textColor;
+        font-weight: bold;
+    }
+}
+body{
+    font-family:Cambria;
+    color:rgb(85, 2, 85);
+    background-color:lavenderblush;
+}
+input,textarea{
+    width:25vw;
+    height:2.5vw;
+    font-size: 1.3vw;
+    background: transparent;
+    border:none;
+    border-bottom: 0.1vw solid black;
+}
+#content{
+    /* border:1px solid black; */
+    background-color: white;
+    margin:2vw;
+    margin-top: -0.2vw;
+    padding:3vw;
+    padding-top: 1vw;
+    .searchElements{
+        margin-left: 5vw;
+        margin-right: 0.1vw;
+        margin-bottom: 3vw;
+        font-size: 1.5vw;
+    }
+    #dropdown{
+        @include basicBtn();
+    }
+    #pattern {
+        width:25vw;
+        height:2.5vw;
+        font-size: 1.5vw;
+        background: transparent;
+        border:none;
+        border-bottom: 0.2vw solid black;
+    }
+    #searchBoxButton{
+        @include basicBtn();
+        margin-bottom: 1px;
+    }
+    #bookTable{
+        width:100%;
+        padding:1vw;
+        border-collapse: collapse;
+        #headingRow{
+            border-bottom:1px solid black;
+            padding:2vw;
+        }
+        .tableHeader{
+            text-align:left;
+            font-size:1.3vw;
+            padding :0.8vw;
+        }
+        .tableRow{
+            border-bottom:1px solid black;
+            padding:2vw;
+        }
+        .tableData{
+            text-align:left;
+            font-size:1.3vw;
+            padding :0.8vw;
+            .button{
+                @include basicBtn();
+                margin: 4px 15px 4px 2px;
+            }
+        }
+    }
+    #holdElements{
+        border: 1px solid $textColor;
+    }
+    .addbookFormDiv{
+        margin:2vw;
+        margin-left:30vw;
+         padding-left:1vw; 
+         .addBookformLabel{
+            font-size: 1.3vw;
+            width:50px;
+            margin-right:2vw;
+        }
+    }
+    #submitBookDetails{
+        @include basicBtn();
+        height:4vw;
+        width: 10vw;
+    }
+    #bookDetails{
+        padding:1vw;
+        .others{
+            padding:0.5vw;
+            margin: 2vw;
+        }
+        #description{
+            text-align: justify;
+        }
+    }
+}
