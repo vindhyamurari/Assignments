@@ -1,0 +1,49 @@
+<div id="addBookPage">
+  <h2 class="heading">Add Book Deails</h2>
+  <form id="addNewBook" action="#" method="GET">
+    <div id="holdElements">
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Title </label>
+        </span>
+        <input type="text" id="bookTitle" required />
+      </div>
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Author </label>
+        </span>
+        <input type="text" id="author" required />
+      </div>
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Price </label>
+        </span>
+        <input type="number" min="1" id="price" required />
+      </div>
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Rating </label>
+        </span>
+        <input type="number" min="1" max="10" step="0.1" id="rating" required />
+      </div>
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Details </label>
+        </span>
+        <textarea rows="5" cols="70" id="details"></textarea>
+      </div>
+      <div class="addbookFormDiv">
+        <span class="addBookformLabel">
+          <label>Cover Pic URL</label>
+        </span>
+        <input type="text" id="url" />
+      </div>
+      <input
+        type="submit"
+        style="margin-left: 50%"
+        id="submitBookDetails"
+        value="Submit"
+      />
+    </div>
+  </form>
+</div>
