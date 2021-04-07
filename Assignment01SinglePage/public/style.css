@@ -1,0 +1,137 @@
+#title{
+    background-color: lavenderblush;
+    /* border:1px solid black; */
+    margin:2vw;
+    padding:3vw;
+    padding-top: 1vw;
+}
+#title a{
+    font-size:1.5vw;
+    float: right;
+    padding-left:1vw;
+    padding-right:1vw;
+
+}
+#content{
+   
+    /* border:1px solid black; */
+    margin:2vw;
+    padding:3vw;
+    padding-top: 1vw;
+}
+body{
+    font-family:Cambria;
+    /* background-color:wheat; */
+}
+.searchElements{
+    margin-left: 5vw;
+    margin-right: 0.1vw;
+    margin-bottom: 3vw;
+}
+#bookTable{
+    width:100%;
+    padding:1vw;
+    border-collapse: collapse;
+}
+#headingRow{
+    border-bottom:1px solid black;
+    padding:2vw;
+}
+.tableHeader{
+    text-align:center;
+    font-size:1.3vw;
+    padding :0.8vw;
+}
+.tableRow{
+    border-bottom:1px solid black;
+    padding:2vw;
+}
+.tableData{
+    text-align:center;
+    font-size:1.3vw;
+    padding :0.8vw;
+}
+.addbookFormDiv{
+    margin:2vw;
+    margin-left:30vw;
+     padding-left:1vw; 
+     
+}
+
+.addBookformLabel{
+    font-size: 1.5vw;
+    width:50px;
+    margin-right:2vw;
+}
+input,textarea{
+    width:25vw;
+    height:2.5vw;
+    font-size: 1.5vw;
+    background: transparent;
+    border:none;
+    border-bottom: 0.2vw solid black;
+}
+
+#searchBoxButton {
+    font-family: Cambria;
+    background-color:lavenderblush; 
+    border: none;
+    color:black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 50px;
+    cursor: pointer;
+  }
+  .searchElements{
+    font-size: 1.5vw;
+}
+  #pattern {
+    width:25vw;
+    height:2.5vw;
+    font-size: 1.5vw;
+    background: transparent;
+    border:none;
+    border-bottom: 0.2vw solid black;
+}
+.button{
+    font-family: Cambria;
+    background-color:lavenderblush; 
+    border: none;
+    color:black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 50px;
+    cursor: pointer;
+}
+#dropdown{
+    font-family: Cambria;
+    background-color:lavenderblush; 
+    border: none;
+    color:black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 50px;
+    cursor: pointer;
+}
+#submitBookDetails{
+    font-family: Cambria;
+    background-color:lavenderblush; 
+    border: none;
+    color:black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 50px;
+    cursor: pointer;
+}
