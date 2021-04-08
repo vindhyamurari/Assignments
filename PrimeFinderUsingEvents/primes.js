@@ -1,4 +1,5 @@
 const eventEmitter  = require("events");
+const clientModule=require('./client');
 
 const isPrime = function (number) {
   //function to find if the given number is prime or not
@@ -21,8 +22,9 @@ function primeFinder(min, max) {
   //using it in async format so that on is called before emit
   if (min > max) {
     setTimeout(()=>{
-      event.emit('error');
+      event.emit('error',` \n Lower Limit '${min}' cannot be Greater than Higher Limit '${max}' `);
     },0) 
+    
   }
 
   //making batches to find out the primes between low and high 
@@ -39,11 +41,11 @@ function primeFinder(min, max) {
     let percent = Math.trunc((hi / max) * 100);
     event.emit('progress', percent);
 
-    //emitting abort if 70% is reached
-    if(percent>=70){
-        event.emit('abort');
+    clientModule.clientEvent.on('abort',()=>{
+        event.emit('stopOnAbort');
         clearInterval(iid);
-    } 
+        process.exit(1)
+    })
     lo = hi;
     hi = Math.min(lo + 100, max);
 
