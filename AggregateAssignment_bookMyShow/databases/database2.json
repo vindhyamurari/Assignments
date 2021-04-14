@@ -1,0 +1,19 @@
+{
+    "movies": [
+      {
+        "id": 1,
+        "movie": "Calm The Home",
+        "timing":["7:00am","10:00am"]
+      },
+      {
+        "id": 2,
+        "movie": "Pinnochio",
+        "timing":["11:00am","2:00pm"]
+      },
+      {
+        "id": 3,
+        "movie": "The Monster",
+        "timing":["5:00pm","8:00pm"]
+      }
+    ]
+}

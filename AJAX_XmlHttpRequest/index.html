@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <h3> Bringing content from text Document </h3>
+    <button id="btn">Click Here to Get the Content</button>
+    <p id="info"></p>
+</body>
+<script>
+    let btn=document.getElementById('btn');
+    btn.addEventListener('click',event=>{
+        let xhttp=new XMLHttpRequest();
+
+        xhttp.onreadystatechange=function(){
+            if(xhttp.readyState==4){
+                if(xhttp.status==200){
+                    document.getElementById('info').innerHTML=xhttp.responseText; 
+                }
+                if(xhttp.status==404){
+                   console.log("File Not Found")
+                }    
+            }
+        }
+        xhttp.open('get','sample.txt',true)
+        xhttp.send();
+    })
+</script>
+</html>
