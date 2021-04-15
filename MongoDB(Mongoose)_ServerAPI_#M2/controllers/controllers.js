@@ -67,28 +67,33 @@ exports.getAllBooks = getAllBooks;
 // Method : GET  function to respond with book of the given Id
 function getBookById(request, response, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var book, error_2;
+        var book, error_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
+                    _a.trys.push([0, 5, , 6]);
+                    book = void 0;
+                    _a.label = 1;
                 case 1:
-                    book = _a.sent();
-                    if (!book) {
-                        response.writeHead(404, { 'Content-Type': 'application/json' });
-                        response.end(JSON.stringify({ "message": "book " + id + " not found", id: id }));
-                    }
-                    else {
-                        response.writeHead(200, { 'Content-Type': 'application/json' });
-                        response.end(JSON.stringify(book));
-                    }
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
                 case 2:
+                    book = _a.sent();
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _a.sent();
-                    console.log(error_2.message);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    response.writeHead(404, { 'Content-Type': 'application/json' });
+                    response.end(JSON.stringify({ "message": "book " + id + " not found", id: id }));
+                    return [3 /*break*/, 4];
+                case 4:
+                    response.writeHead(200, { 'Content-Type': 'application/json' });
+                    response.end(JSON.stringify(book));
+                    return [3 /*break*/, 6];
+                case 5:
+                    error_3 = _a.sent();
+                    console.log(error_3.message);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
@@ -97,36 +102,12 @@ exports.getBookById = getBookById;
 // Method : GET function to get books by given text
 function getBooksBySearchOnSimpleText(request, response, searchText) {
     return __awaiter(this, void 0, void 0, function () {
-        var books, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, bookSchema_1.model.find({ $or: [{ 'title': searchText }, { 'author': searchText }, { 'description': searchText }] })];
-                case 1:
-                    books = _a.sent();
-                    response.writeHead(200, { 'Content-Type': 'application/json' });
-                    response.end(JSON.stringify(books));
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.log(error_3.message);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.getBooksBySearchOnSimpleText = getBooksBySearchOnSimpleText;
-// Method : GET function to get books by Author
-function getBooksByAuthor(request, response, author) {
-    return __awaiter(this, void 0, void 0, function () {
         var books, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, bookSchema_1.model.find({ 'author': author })];
+                    return [4 /*yield*/, bookSchema_1.model.find({ $or: [{ 'title': searchText }, { 'author': searchText }, { 'description': searchText }] })];
                 case 1:
                     books = _a.sent();
                     response.writeHead(200, { 'Content-Type': 'application/json' });
@@ -141,16 +122,16 @@ function getBooksByAuthor(request, response, author) {
         });
     });
 }
-exports.getBooksByAuthor = getBooksByAuthor;
-// Method : GET function to get books In price range
-function getBooksInPriceRange(request, response, price) {
+exports.getBooksBySearchOnSimpleText = getBooksBySearchOnSimpleText;
+// Method : GET function to get books by Author
+function getBooksByAuthor(request, response, author) {
     return __awaiter(this, void 0, void 0, function () {
         var books, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, bookSchema_1.model.find({ $and: [{ 'price': { $gte: price[0] } }, { 'price': { $lte: price[1] } }] })];
+                    return [4 /*yield*/, bookSchema_1.model.find({ 'author': author })];
                 case 1:
                     books = _a.sent();
                     response.writeHead(200, { 'Content-Type': 'application/json' });
@@ -165,11 +146,35 @@ function getBooksInPriceRange(request, response, price) {
         });
     });
 }
+exports.getBooksByAuthor = getBooksByAuthor;
+// Method : GET function to get books In price range
+function getBooksInPriceRange(request, response, price) {
+    return __awaiter(this, void 0, void 0, function () {
+        var books, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, bookSchema_1.model.find({ $and: [{ 'price': { $gte: price[0] } }, { 'price': { $lte: price[1] } }] })];
+                case 1:
+                    books = _a.sent();
+                    response.writeHead(200, { 'Content-Type': 'application/json' });
+                    response.end(JSON.stringify(books));
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_6 = _a.sent();
+                    console.log(error_6.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 exports.getBooksInPriceRange = getBooksInPriceRange;
 // Method : POST function to post the book details
 function postBook(request, response) {
     return __awaiter(this, void 0, void 0, function () {
-        var body, _a, title, author, rating, price, pages, votes, description, book, newBook, error_6;
+        var body, _a, title, author, rating, price, pages, votes, description, book, newBook, error_7;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -186,8 +191,8 @@ function postBook(request, response) {
                     response.end(JSON.stringify(newBook));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _b.sent();
-                    console.log(error_6.message);
+                    error_7 = _b.sent();
+                    console.log(error_7.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -198,20 +203,26 @@ exports.postBook = postBook;
 // Method : PUT function to delete book with a particular
 function updateBook(request, response, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var bookFnd, body, _a, title, author, rating, price, pages, votes, description, book, newBook, error_7;
+        var bookFnd, error_8, body, _a, title, author, rating, price, pages, votes, description, book, newBook, error_9;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 6, , 7]);
-                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
+                    _b.trys.push([0, 7, , 8]);
+                    bookFnd = void 0;
+                    _b.label = 1;
                 case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
+                case 2:
                     bookFnd = _b.sent();
-                    if (!!bookFnd) return [3 /*break*/, 2];
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_8 = _b.sent();
                     response.writeHead(404, { 'Content-Type': 'application/json' });
                     response.end(JSON.stringify('Book Not Found'));
-                    return [3 /*break*/, 5];
-                case 2: return [4 /*yield*/, utils_1.getPostedData(request)];
-                case 3:
+                    return [3 /*break*/, 4];
+                case 4: return [4 /*yield*/, utils_1.getPostedData(request)];
+                case 5:
                     body = _b.sent();
                     _a = JSON.parse(body), title = _a.title, author = _a.author, rating = _a.rating, price = _a.price, pages = _a.pages, votes = _a.votes, description = _a.description;
                     book = {
@@ -223,18 +234,17 @@ function updateBook(request, response, id) {
                         votes: votes || bookFnd.votes,
                         description: description || bookFnd.description
                     };
-                    return [4 /*yield*/, bookSchema_1.model.findByIdAndUpdate(id, book)];
-                case 4:
+                    return [4 /*yield*/, bookSchema_1.model.findByIdAndUpdate(id, book, { new: true })];
+                case 6:
                     newBook = _b.sent();
                     response.writeHead(200, { 'Content-Type': 'application/json' });
                     response.end(JSON.stringify(newBook));
-                    _b.label = 5;
-                case 5: return [3 /*break*/, 7];
-                case 6:
-                    error_7 = _b.sent();
-                    console.log(error_7.message);
-                    return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_9 = _b.sent();
+                    console.log(error_9.message);
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });
@@ -243,30 +253,35 @@ exports.updateBook = updateBook;
 // Method : DELETE function to delete book with a particular
 function deleteBook(request, response, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var book, error_8;
+        var book, error_10, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
-                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
+                    _a.trys.push([0, 6, , 7]);
+                    book = void 0;
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, bookSchema_1.model.findById(id)];
+                case 2:
                     book = _a.sent();
-                    if (!!book) return [3 /*break*/, 2];
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_10 = _a.sent();
                     response.writeHead(404, { 'Content-Type': 'application/json' });
                     response.end(JSON.stringify('Book Not Found'));
                     return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, bookSchema_1.model.findByIdAndRemove(id)];
-                case 3:
+                case 4: return [4 /*yield*/, bookSchema_1.model.findByIdAndRemove(id)];
+                case 5:
                     _a.sent();
                     response.writeHead(200, { 'Content-Type': 'application/json' });
                     response.end(JSON.stringify({ message: "Book " + id + " removed" }));
-                    _a.label = 4;
-                case 4: return [3 /*break*/, 6];
-                case 5:
-                    error_8 = _a.sent();
-                    console.log(error_8.message);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 6:
+                    error_11 = _a.sent();
+                    console.log(error_11.message);
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });

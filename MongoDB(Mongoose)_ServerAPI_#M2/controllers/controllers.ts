@@ -19,15 +19,16 @@ import {getPostedData} from '../models/utils';
 // Method : GET  function to respond with book of the given Id
 async function getBookById(request:any,response:any,id:string){
     try{
-        const book=await bookdb.findById(id);
-        if(!book){
+        let book:any
+        try{
+            book=await bookdb.findById(id);
+        }
+        catch(error){
             response.writeHead(404,{'Content-Type':'application/json'})
             response.end(JSON.stringify({"message":`book ${id} not found`,id}))
         }
-        else{
-            response.writeHead(200,{'Content-Type':'application/json'})
-            response.end(JSON.stringify(book))
-        }
+        response.writeHead(200,{'Content-Type':'application/json'})
+        response.end(JSON.stringify(book))
         
     }
     catch(error)
@@ -94,12 +95,15 @@ async function postBook(request:any,response:any){
 // Method : PUT function to delete book with a particular
 async function updateBook(request:any,response:any,id:any){
     try{
-        const bookFnd:any=await bookdb.findById(id);
-        if(!bookFnd) {
+        let bookFnd:any
+        try{
+            bookFnd=await bookdb.findById(id);
+        }
+        catch(error){
             response.writeHead(404, { 'Content-Type': 'application/json' })
             response.end(JSON.stringify('Book Not Found'))
         }
-        else {
+        
             const body:any=await getPostedData(request)
             const {title,author,rating,price,pages,votes,description}=JSON.parse(body)
             //let bookFound=JSON.parse(bookFnd)
@@ -112,10 +116,10 @@ async function updateBook(request:any,response:any,id:any){
                 votes:votes||bookFnd.votes,
                 description:description||bookFnd.description
             }    
-            const newBook=await bookdb.findByIdAndUpdate(id,book)        
+            const newBook=await bookdb.findByIdAndUpdate(id,book,{new: true})        
             response.writeHead(200,{'Content-Type':'application/json'})
             response.end(JSON.stringify(newBook))
-        }  
+
     }
     catch(error)
     {
@@ -126,16 +130,19 @@ async function updateBook(request:any,response:any,id:any){
 // Method : DELETE function to delete book with a particular
 async function deleteBook(request:any,response:any,id:string){
     try{
-        const book=await bookdb.findById(id);
-        if(!book) {
+        
+        let book:any
+        try{
+            book=await bookdb.findById(id);
+        }
+        catch(error){
             response.writeHead(404, { 'Content-Type': 'application/json' })
             response.end(JSON.stringify('Book Not Found'))
         }
-        else {
-            await bookdb.findByIdAndRemove(id)
-            response.writeHead(200, { 'Content-Type': 'application/json' })
-            response.end(JSON.stringify({ message: `Book ${id} removed` }))
-        }  
+        await bookdb.findByIdAndRemove(id)
+        response.writeHead(200, { 'Content-Type': 'application/json' })
+        response.end(JSON.stringify({ message: `Book ${id} removed` }))
+     
     }
     catch(error)
     {
