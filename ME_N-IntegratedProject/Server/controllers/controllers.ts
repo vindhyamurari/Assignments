@@ -1,0 +1,166 @@
+import {model as bookdb} from '../models/bookSchema'
+
+// Method : GET  function to respond with all books
+ async function getAllBooks(request:any,response:any){
+    try{
+        const books=await bookdb.find();
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET  function to respond with book of the given Id
+async function getBookById(request:any,response:any,id:any){
+    try{
+        let book:any
+        let array:any[]=[]
+        try{
+            book=await bookdb.findById(id);
+            array.push(book)
+            response.send(array)
+        }
+        catch(error){
+            response.send({"message":`book ${id} not found`,id})
+        }   
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET function to get books by given text
+ async function getBooksBySearchOnSimpleText(request:any,response:any,searchText:string){
+    try{    
+      const books=await bookdb.find({$or:[{'title':searchText},{'author':searchText},{'description':searchText}]})
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET function to get books by Author
+async function getBooksByAuthor(request:any,response:any,author:string){
+    try{    
+      const books=await bookdb.find({'author':author});
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET function to get books by Author
+async function getBookByTitle(request:any,response:any,title:string){
+    try{    
+      const books=await bookdb.find({'title':title});
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET function to get books In price range
+async function getBooksInPriceRange(request:any,response:any,price:any[]){
+    try{    
+      const books=await bookdb.find({$and:[{'price':{$gte:price[0]}},{'price':{$lte:price[1]}}]});
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : GET function to get books less than given rating
+async function getBooksLessThanGivenRating(request:any,response:any,rating:string){
+    try{    
+      const books=await bookdb.find({'rating':{$lte:rating}});
+        response.send(books)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : POST function to post the book details
+async function postBook(request:any,response:any){
+    try{
+        let newBook=new bookdb()
+        newBook.isbn=request.body.isbn;
+        newBook.title=request.body.title;
+        newBook.author=request.body.author;
+        newBook.price=request.body.price;
+        newBook.rating=request.body.rating;
+        newBook.pages=request.body.pages;
+        newBook.votes=request.body.votes;
+        newBook.description=request.body.description;
+        newBook=await bookdb.create(newBook)
+        response.send(newBook)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }
+}
+
+// Method : PUT function to delete book with a particular
+async function updateBook(request:any,response:any,id:string){
+    try{
+        let bookFnd:any
+        try{
+            bookFnd=await bookdb.findById(id);
+        }
+        catch(error){
+            response.send({"message":`book ${id} not found`,id})
+        }
+            let newBook=new bookdb()
+            newBook._id=bookFnd._id;
+            newBook.isbn=request.body.isbn||bookFnd.isbn;
+            newBook.title=request.body.title||bookFnd.title;
+            newBook.author=request.body.author||bookFnd.author;
+            newBook.price=request.body.price||bookFnd.price;
+            newBook.rating=request.body.rating||bookFnd.ratin;
+            newBook.pages=request.body.pages||bookFnd.pages;
+            newBook.votes=request.body.votes||bookFnd.votes;
+            newBook.description=request.body.description||bookFnd.description;
+            newBook=await bookdb.findByIdAndUpdate(id,newBook,{new: true}) 
+            response.send(newBook) 
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }    
+}
+
+// Method : DELETE function to delete book with a particular
+async function deleteBook(request:any,response:any,id:string){
+    try{
+        let book:any
+        try{
+            book=await bookdb.findById(id);
+        }
+        catch(error){
+            response.send(`book ${id} not found`)
+        }
+            await bookdb.findByIdAndRemove(id)
+            response.send(`Book Removed Successfully`)
+    }
+    catch(error)
+    {
+        console.log(error.message)   
+    }    
+}
+
+//exporting all the functions
+export {getAllBooks,getBooksBySearchOnSimpleText,getBooksByAuthor,getBookByTitle,
+    getBooksInPriceRange,getBookById,getBooksLessThanGivenRating,postBook,updateBook,deleteBook}

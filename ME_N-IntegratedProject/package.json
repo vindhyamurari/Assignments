@@ -1,0 +1,28 @@
+{
+  "name": "AjaxMiniProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.37",
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4"
+  },
+  "scripts": {
+    "start": "node ./Server/server.js",
+    "dev": "concurrently -k -n tsc,server -c red,blue \"tsc --watch\" \"nodemon ./Server/server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
