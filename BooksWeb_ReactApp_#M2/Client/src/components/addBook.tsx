@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { ReactElement,useState } from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import { addBooksToStorage, fetchFromLocalStorage } from '../utils'
@@ -16,7 +17,6 @@ export default function AddBook({}: Props): ReactElement {
         cover:''
     })
     let history=useHistory();
-    console.log(history)
     const inputEvent=(event:any)=>{
         let value=event.target?.value
         let name=event.target?.name 
@@ -24,14 +24,13 @@ export default function AddBook({}: Props): ReactElement {
     }
     const submitFormDetails=(e:any)=>{
         if(localStorage.getItem('token')){
-            fetch("http://localhost:5000/books", {
-                method: "POST",
-                body: JSON.stringify(book),
+            axios.post('http://localhost:5000/books',book,
+            {
                 headers: {
-                     "Content-Type": "application/json",
-                     "Authorization":`${localStorage.getItem('token')}`
-                 },
-            })
+                    "Authorization":`${localStorage.getItem('token')}`
+                }
+            }).then((res)=>console.log(res.data))
+            .catch((err)=>console.log(err.message))
         }
         else{
             alert('Please Sign-in to Add Book')

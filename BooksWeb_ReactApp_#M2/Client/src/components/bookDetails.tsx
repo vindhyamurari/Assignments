@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Link, Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import {  fetchFromLocalStorage } from '../utils'
@@ -28,9 +29,9 @@ export default function BookDetails({bookId}: Props): ReactElement {
     let history=useHistory()
 
     useEffect(()=>{
-        fetch("http://localhost:5000/books/"+id)
-        .then((result)=> result.json())
-        .then((data:any)=>setbook(data))
+        axios.get("http://localhost:5000/books/"+id)
+          .then((res)=>setbook(res.data))
+          .catch((err)=>console.log(err.message))
 
     },[])
 
@@ -42,13 +43,11 @@ export default function BookDetails({bookId}: Props): ReactElement {
 
     const deleteBook=()=>{
       if(localStorage.getItem('token')){
-        fetch("http://localhost:5000/books/"+id, {
-          method: "DELETE",
-          headers: {
-             "Content-Type": "application/json" ,
-             "Authorization":`${localStorage.getItem('token')}`
-        },
-      })
+      axios.delete("http://localhost:5000/books/"+id,{
+        headers: {
+          "Authorization":`${localStorage.getItem('token')}`
+       }
+      }).then((res)=>console.log(res.data)).catch((err)=>console.log(err.message))
       }
       else{
         alert('Please Sign-in to Delete Book')

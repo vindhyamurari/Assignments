@@ -1,9 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import {  Link,Route,BrowserRouter as Router} from 'react-router-dom'
-import { fetchFromLocalStorage } from '../utils'
 import BookDetails from './bookDetails'
-import Header from './header'
 import StarRating from './starRating'
+import axios from 'axios'
 
 interface Props {
     dataTosearch:any
@@ -14,38 +13,37 @@ export default function Table({dataTosearch}: Props): ReactElement {
 
     const [books, setbooks] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/books")
-        .then((result)=> result.json())
-        .then((data:any)=>setbooks(data))
+        axios.get("http://localhost:5000/books")
+        .then((res:any)=>setbooks(res.data))
+        .catch((err)=>console.log(err.message))
     },[])
-    
     useEffect(() => {
         console.log(dataTosearch)
         let searchBy=dataTosearch.searchBy
         let searchText=dataTosearch.searchText
             switch (searchBy) {
-                case 'id':fetch("http://localhost:5000/books/"+searchText)
-                             .then((result)=> result.json())
-                             .then((data:any)=>setbooks(data)) 
+                case 'id': axios.get("http://localhost:5000/books/"+searchText)
+                            .then((res:any)=>setbooks(res.data))
+                            .catch((err)=>console.log(err.message))
                           break;
-                case 'author':fetch("http://localhost:5000/books/by/"+searchText)
-                                .then((result)=> result.json())
-                                .then((data:any)=>setbooks(data)) 
-                          break;
-                case 'rating':fetch("http://localhost:5000/books/with-min-rating/"+searchText)
-                                 .then((result)=> result.json())
-                                 .then((data:any)=>setbooks(data)) 
+                case 'author':axios.get("http://localhost:5000/books/by/"+searchText)
+                                .then((res:any)=>setbooks(res.data))
+                                .catch((err)=>console.log(err.message))
+                                break;
+                case 'rating': axios.get("http://localhost:5000/books/with-min-rating/"+searchText)
+                                 .then((res:any)=>setbooks(res.data))
+                                 .catch((err)=>console.log(err.message)) 
                        break;
                 case 'price':const [minPrice,maxPrice]=searchText.split('-')
-                            fetch("http://localhost:5000/books/priced/"+minPrice+"/"+maxPrice)
-                                .then((result)=> result.json())
-                                .then((data:any)=>setbooks(data)) 
+                            axios.get("http://localhost:5000/books/priced/"+minPrice+"/"+maxPrice)
+                                .then((res:any)=>setbooks(res.data))
+                                .catch((err)=>console.log(err.message))
                     break; 
             }
             if(searchText===''){
-                fetch("http://localhost:5000/books")
-                    .then((result)=> result.json())
-                    .then((data:any)=>setbooks(data))
+                axios.get("http://localhost:5000/books")
+                .then((res:any)=>setbooks(res.data))
+                .catch((err)=>console.log(err.message))
             }   
     },[dataTosearch])
         return (

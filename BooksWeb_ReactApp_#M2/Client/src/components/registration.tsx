@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { ReactElement, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
@@ -34,18 +35,13 @@ export default function Registration({}: Props): ReactElement {
         let {name,email,password}=register
         if(passwordMatch===''){
             let newUser={name,email,password}
-            fetch("http://localhost:5000/users/register", {
-                method: "POST",
-                body: JSON.stringify(newUser),
-                headers: { "Content-Type": "application/json" },
-            })
-            .then((res)=>res.json())
-            .then((data)=>{
-                //console.log(data)
-                if(data.success===false){
-                    alert('Already Registered ... Please Sign-in')
-                }
-            })
+            axios.post("http://localhost:5000/users/register",newUser,)
+                .then((res)=>{
+                    if(res.data.success===false){
+                        alert('Already Registered ... Please Sign-in')
+                    }
+                })
+                .catch((err)=>console.log(err.message))
         }
         history.push('/')
     }

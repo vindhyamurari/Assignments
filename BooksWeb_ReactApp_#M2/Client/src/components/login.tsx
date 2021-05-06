@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import axios from 'axios'
 
 interface Props {
     
@@ -22,21 +23,18 @@ export default function Login({}: Props): ReactElement {
     }
     const submitFormDetails=(e:any)=>{
         e.preventDefault()
-        fetch("http://localhost:5000/users/login", {
-            method: "POST",
-            body: JSON.stringify(login),
-            headers: { "Content-Type": "application/json" },
-        })
-        .then((res)=>res.json())
-        .then((data)=>{
-            if(data.success===true){
-                localStorage.setItem('token',data.token)
+        axios.post("http://localhost:5000/users/login",login)
+        .then((res)=>{
+            console.log(res.data)
+            if(res.data.success===true){
+                localStorage.setItem('token',res.data.token)
             }
             else{
                 alert('Couldnt Sign-in Please Try Again')
             }
         })
         history.push('/')
+       
     }
 
     return (
