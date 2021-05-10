@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { ReactElement, useContext, useEffect, useState } from 'react'
 import { Link, Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import { UserContext } from '../UserContext'
@@ -32,9 +31,6 @@ export default function BookDetails({bookId}: Props): ReactElement {
     console.log(state.books)
 
    useEffect(()=>{
-       /*  axios.get("http://localhost:5000/books/"+id)
-          .then((res)=>setbook(res.data))
-          .catch((err)=>console.log(err.message)) */
           setbook(state.books.find((b:any)=>b.id===Number(id)))
     },[])
 
@@ -45,16 +41,6 @@ export default function BookDetails({bookId}: Props): ReactElement {
     })  
 
     const deleteBook=()=>{
-      /* if(localStorage.getItem('token')){
-      axios.delete("http://localhost:5000/books/"+id,{
-        headers: {
-          "Authorization":`${localStorage.getItem('token')}`
-       }
-      }).then((res)=>console.log(res.data)).catch((err)=>console.log(err.message))
-      }
-      else{
-        alert('Please Sign-in to Delete Book')
-      } */
      dispatch({type:'REMOVE_BOOK',id:Number(id)})
         history.push('/')
     }

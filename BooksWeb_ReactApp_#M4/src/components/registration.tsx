@@ -42,13 +42,6 @@ export default function Registration({}: Props): ReactElement {
         if(passwordMatch===''){
             let newUser={name,email,password}
             dispatch({type:'REGISTER_USER',user:newUser})
-            /* axios.post("http://localhost:5000/users/register",newUser,)
-                .then((res)=>{
-                    if(res.data.success===false){
-                        alert('Already Registered ... Please Sign-in')
-                    }
-                })
-                .catch((err)=>console.log(err.message))*/
         } 
         else{
             setModalShow(true)

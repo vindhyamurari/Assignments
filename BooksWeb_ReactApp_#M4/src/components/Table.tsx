@@ -18,42 +18,9 @@ export default function Table({}: Props): ReactElement {
     console.log(`state.users `, state.users )
    const [books, setbooks] = useState([])
     useEffect(() => {
-   /*       axios.get("http://localhost:5000/books")
-        .then((res:any)=>setbooks(res.data))
-        .catch((err)=>console.log(err.message))   */
         setbooks(state.books)
 
     },[])
-   /* useEffect(() => {
-        console.log(dataTosearch)
-        let searchBy=dataTosearch.searchBy
-        let searchText=dataTosearch.searchText
-            switch (searchBy) {
-                case 'id': axios.get("http://localhost:5000/books/"+searchText)
-                            .then((res:any)=>setbooks(res.data))
-                            .catch((err)=>console.log(err.message))
-                          break;
-                case 'author':axios.get("http://localhost:5000/books/by/"+searchText)
-                                .then((res:any)=>setbooks(res.data))
-                                .catch((err)=>console.log(err.message))
-                                break;
-                case 'rating': axios.get("http://localhost:5000/books/with-min-rating/"+searchText)
-                                 .then((res:any)=>setbooks(res.data))
-                                 .catch((err)=>console.log(err.message)) 
-                       break;
-                case 'price':const [minPrice,maxPrice]=searchText.split('-')
-                            axios.get("http://localhost:5000/books/priced/"+minPrice+"/"+maxPrice)
-                                .then((res:any)=>setbooks(res.data))
-                                .catch((err)=>console.log(err.message))
-                    break; 
-            }
-            if(searchText===''){
-                axios.get("http://localhost:5000/books")
-                .then((res:any)=>setbooks(res.data))
-                .catch((err)=>console.log(err.message))
-            }   
-    },[dataTosearch])
- */
     useEffect(() => {
         setbooks(searchBooks(state.books,state.dataToSearch.searchBy,state.dataToSearch.searchText))
     }, [state.dataToSearch])

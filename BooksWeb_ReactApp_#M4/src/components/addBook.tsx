@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { ReactElement,useContext,useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../UserContext';
@@ -26,18 +26,6 @@ export default function AddBook({}: Props): ReactElement {
         setbook(prevbook => ({ ...prevbook, [name]: value }));
     }
     const submitFormDetails=(e:any)=>{
-     /*    if(localStorage.getItem('token')){
-            axios.post('http://localhost:5000/books',book,
-            {
-                headers: {
-                    "Authorization":`${localStorage.getItem('token')}`
-                }
-            }).then((res)=>console.log(res.data))
-            .catch((err)=>console.log(err.message))
-        }
-        else{
-            alert('Please Sign-in to Add Book')
-        } */
         let id=state.books[state.books.length-1].id+1;
         let newBook={id:id,...book}
         dispatch({type:'ADD_BOOK',book:newBook})

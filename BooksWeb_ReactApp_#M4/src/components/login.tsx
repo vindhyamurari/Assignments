@@ -33,16 +33,6 @@ export default function Login({}: Props): ReactElement {
     }
     const submitFormDetails=(e:any)=>{
         e.preventDefault()
-       /* axios.post("http://localhost:5000/users/login",login)
-         .then((res)=>{
-            console.log(res.data)
-            if(res.data.success===true){
-                localStorage.setItem('token',res.data.token)
-            }
-            else{
-                alert('Couldnt Sign-in Please Try Again')
-            }
-        }) */
         let foundUser=state.users.find((user:any)=>user.email===login.email)
         if(foundUser){
             if(foundUser.password===login.password){

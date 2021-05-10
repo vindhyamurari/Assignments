@@ -70,7 +70,6 @@ export default function Header({}: Props): ReactElement {
             <Link className="nav-link" to="/addBook" >Add Books</Link>
             </li>
             <li>
-            {/* <Link className="nav-link" to="/logout" >Logout</Link>  */}
             <button className="btn btn-dark" onClick={logoutUser}>Logout</button>
             </li>
             </>
@@ -88,7 +87,6 @@ export default function Header({}: Props): ReactElement {
             <Link className="nav-link" to="/addAuthor" >Add Author</Link>
             </li> */}
           </ul>
-          
         </div>
         </div>
       </nav>
