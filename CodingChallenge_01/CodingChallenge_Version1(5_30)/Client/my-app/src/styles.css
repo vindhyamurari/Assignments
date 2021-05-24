@@ -1,0 +1,134 @@
+.navbar-brand-titleOne {
+    color: white;
+    margin-right: 5vw;
+    padding: 5px 3px 3px 3px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .card-deck {
+    margin-top: 2vw;
+    margin-left: 8vw;
+    margin-right: 3vw;
+  }
+  .card {
+    width: 250px;
+    height: 530px;
+    cursor: pointer;
+    margin: 1vw 2vw 2vw 2vw;
+    box-shadow: 10px 10px 10px rgb(58, 57, 57);
+  }
+  .card:hover {
+    text-decoration: none;
+  }
+  .card-img-top {
+    max-width: 600px;
+    max-height: 300px;
+  }
+  .titleHolder {
+    max-width: 380px;
+    max-height: 200px;
+  }
+  .card-title {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+  }
+  .card-text {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+  }
+  .form-group,
+  .form-row {
+    max-width: 500px;
+  }
+  .addBookForm {
+    margin-left: 30vw;
+  }
+  .submitform {
+    margin-top: 20px;
+    margin-left: 200px;
+  }
+  .title {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .dropDown {
+    border-radius: 30px;
+    margin: 10px;
+  }
+  .stars-background {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+  }
+  .stars-background::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+    color: #f8ce0b;
+    color: black;
+  }
+  .fa-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 86%;
+  }
+  .fa-stars::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+    color: black;
+  }
+  /* .loginForm{
+    margin-left: 35vw;
+    margin-top: 10vw;
+  } */
+  .registrationForm{
+    margin-top: 3vw;
+    margin-left: 35vw;
+  }
+  .mybar{
+    margin-left: 20vw;
+  }
+  .nav-item-new{
+    margin: 2vw 0vw 23vw 0vw;
+    width:10vw;
+    color:black;
+  } 
+  .nav-link{
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+  } 
+  .linkOption{
+    background-color:white;
+    font-weight: bold;
+    font-size:larger;
+    color:black;
+    width:20vw;
+    margin:3vw 0vw 0vw 5vw;
+    text-align: center;
+  }
+  .linkOption:hover{
+    background-color: white;
+  }
+  .linkOption-one{
+    background-color:white;
+    font-weight: bold;
+    font-size:larger;
+    color:black;
+    width:20vw;
+    margin:3vw 0vw 0vw 5vw;
+    margin-top: 12vw;
+    text-align: center;
+  }
+  .loginForm{
+    margin-left: 12vw;
+    margin-top: 10vw;
+  } 
+  .loginPhoneForm{
+    margin-left: 12vw;
+    margin-top: 14vw;
+  }
+  
