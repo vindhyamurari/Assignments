@@ -1,0 +1,10 @@
+export const USER_LOGIN='USER_LOGIN';
+export const USER_LOGOUT='USER_LOGOUT';
+
+
+export const TOP_RATED_MOVIES='TOP_RATED_MOVIES';
+export const SET_imdbID='SET_imdbID';
+export const SET_searchText='SET_searchText';
+export const SET_SEARCHED_MOVIES_TEXT='SET_SEARCHED_MOVIES_TEXT';
+export const SET_SEARCHED_MOVIES_IMDB='SET_SEARCHED_MOVIES_IMDB';
+export const SET_BOOKMARKED_MOVIES='SET_BOOKMARKED_MOVIES';
